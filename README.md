@@ -42,7 +42,7 @@ You cannot reboot anything.
 ### Reset
 
 Reset the Moxa to factory settings, or at least reset the Moxa root password
-to 'root'. Reboot the Pi.
+to 'root'.
 
 Run the `chaos_craig.sh` script to set up the random elements and start the
 factory.
