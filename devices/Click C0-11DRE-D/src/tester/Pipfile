@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pymodbus = "*"
+pyserial-asyncio = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

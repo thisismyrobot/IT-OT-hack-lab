@@ -1,0 +1,23 @@
+set ROOT_PASS [lindex $argv 0]
+set NEW_TEST_CGI [lindex $argv 1]
+
+spawn telnet 192.168.3.127
+
+expect "Moxa login: " { send "root\n" }
+expect "Password: " { send "root\n" }
+
+# Add guest account
+expect "root@Moxa:~# " { send "deluser guest 2> /dev/null\n" }
+expect "root@Moxa:~# " { send "adduser guest\n" }
+expect "Enter new password: " { send "guest\n" }
+expect "Re-enter new password: " { send "guest\n" }
+
+# Set new root password
+expect "root@Moxa:~# " { send "passwd\n" }
+expect "Enter new password: " { send "$ROOT_PASS\n" }
+expect "Re-enter new password: " { send "$ROOT_PASS\n" }
+
+# Run helper script
+expect "root@Moxa:~# " { send "cd /tmp/ ; chmod u+x configure_moxa.sh; ./configure_moxa.sh $NEW_TEST_CGI; rm configure_moxa.sh\n" }
+
+expect "root@Moxa:/tmp# " { send "exit\n" }
