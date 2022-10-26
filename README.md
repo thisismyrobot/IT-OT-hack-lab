@@ -11,7 +11,7 @@ you can attempt to disrupt:
 The hardware is:
 
  - Moxa IA240-LX with old (and vulnerable) firmware
- - NETGEAR ProSAFE GS105 Gigabit switch, connected to Pi and Moxa
+ - NETGEAR ProSAFE GS105 Gigabit switch
  - Koyo CLICK Click C0-11DRE-D PLC
  - A (WIP) model factory automation
 
