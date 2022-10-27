@@ -6,4 +6,6 @@ This is very very WIP, expect it to change often.
 
 ![](model_factory.png)
 
+![](model_factory.gif)
+
 ![](hardware.jpg)
