@@ -12,6 +12,6 @@ This is very very WIP, expect it to change often.
 
 ![](model_factory.gif)
 
-## Some of the hardware to be used
+## WIP of some test-fitting and alignment
 
-![](hardware.jpg)
+![](hardware.png)
