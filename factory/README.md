@@ -4,14 +4,14 @@ A model for the layout of the hack lab, including the factory itself.
 
 This is very very WIP, expect it to change often.
 
-## Current design
+## Current target design
 
 ![](model_factory.png)
 
-## Near-current view of all sides
+## Animation of a semi-current version of the design
 
 ![](model_factory.gif)
 
-## WIP of some test-fitting and alignment
+## Current state of the real thing
 
 ![](hardware.png)
