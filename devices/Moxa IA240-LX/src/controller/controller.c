@@ -18,7 +18,7 @@ Factory controller.
 #define VALVE_OPEN_ADDRESS 0X2021
 #define PRESSURE_HIGH_ADDRESS 0X0000
 
-#define DRAIN_CYCLES 4
+#define DRAIN_CYCLES 3
 
 
 unsigned short random_byte();
@@ -26,6 +26,7 @@ void set_pump_flag(int clientfd, unsigned short flag);
 void set_valve_ctrl_flag(int clientfd, unsigned short flag);
 void enable_valve_control(int clientfd, unsigned short flag);
 void run_pump(int clientfd, unsigned short flag);
+void stop_pump(int clientfd);
 void open_valve(int clientfd);
 bool pressure_high(int clientfd);
 void write_holding_register(int clientfd, unsigned short address, unsigned short value);
@@ -50,19 +51,21 @@ int main()
     {
         if (pressure_high(clientfd))
         {
+            stop_pump(clientfd);
+
             int i = 0;
             for (i = 0; i < DRAIN_CYCLES; i++)
             {
                 enable_valve_control(clientfd, valve_ctrl_flag);
                 open_valve(clientfd);
-                sleep(4);
+                sleep(2);
             }
         }
         else
         {
             enable_valve_control(clientfd, valve_ctrl_flag);
             run_pump(clientfd, pump_flag);
-            sleep(2);
+            usleep(250);
         }
     }
 
@@ -92,6 +95,11 @@ void enable_valve_control(int clientfd, unsigned short flag)
 void run_pump(int clientfd, unsigned short flag)
 {
     write_holding_register(clientfd, PUMP_RUN_ADDRESS, flag);
+}
+
+void stop_pump(int clientfd)
+{
+    write_holding_register(clientfd, PUMP_RUN_ADDRESS, 0);
 }
 
 void open_valve(int clientfd)
