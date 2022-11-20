@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Set up the controller binary. The chown makes sure root and the nobody can
-# access it, but not the guest account you can use to access via telnet.
-# Nobody is the account that the web server runs under.
+# Set up the `controller` binary. The `chown` makes sure `root` and `nobody`
+# can access it, but not the `guest` account you can use to access via
+# `telnet`/`ssh`. The `nobody` account that the web server runs under.
 cp /mnt/usbstorage/controller /tmp/
 chown nobody /tmp/controller
 chmod o-x /tmp/controller
