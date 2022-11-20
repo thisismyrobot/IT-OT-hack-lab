@@ -6,7 +6,7 @@ automation as the target/goal.
 This project is currently under heavy redevelopment and will change regularly,
 but the current state of [the physical build](factory/) is:
 
-![](factory/hardware.jpg)
+![](factory/hardware.png)
 
 The components are:
 
