@@ -1,30 +1,30 @@
-# IT/OT Hack lab (WIP!)
+# IT/OT Hack lab
 
-A sandboxed IT and OT hack lab.
+A sandboxed IT/OT hack lab/cyber range with the disruption of a physical
+automation as the target/goal.
 
-This picture is from an earlier iteration which was more "IT" than "OT", but
-I'm currently developing a new version with a model factory automation that
-you can attempt to disrupt:
+This project is currently under heavy redevelopment and will change regularly,
+but the current state of [the physical build](factory/) is:
 
-![](img/lab.jpg)
+![](factory/hardware.jpg)
 
-The hardware is:
+The components are:
 
  - Moxa IA240-LX with old (and vulnerable) firmware
  - NETGEAR ProSAFE GS105 Gigabit switch
- - Koyo CLICK Click C0-11DRE-D PLC
- - A (WIP) model factory automation
+ - Koyo CLICK C0-11DRE-D PLC
+ - A (WIP) [model factory automation](factory/)
 
 ## Important note
 
-This project is for my own enjoyment and to capture the flag events with
-friends. It also relies on a real world automation I'll be building.
+This project is for my own learning and enjoyment as well as to support
+capture the flag events with friends. It obviously relies on a real world
+automation so isn't a simple clone-and-build repository. As such, please
+understand I won't be providing support for what is in here, I'm simply
+sharing it to benefit anyone who might find it interesting or helpful for
+their project.
 
-This is not a simple clone-and-build repository, so please understand I won't
-be providing support for what is in here, I'm simply sharing it to benefit
-anyone who might find it interesting or helpful for their project.
-
-## Scenario
+## The scenario
 
 You goal is blow up a factory!
 
@@ -34,10 +34,6 @@ This is what we know:
    Shellshock-vulnerable Apache instance.
  * There's a PLC on the network at 192.168.0.10.
  * The Moxa is supervising the a PLC in the control of the factory.
-
-### Conditions
-
-You cannot reboot anything.
 
 ### Reset
 
