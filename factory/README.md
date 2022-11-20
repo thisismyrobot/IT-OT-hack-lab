@@ -1,7 +1,7 @@
 # Factory (WIP)
 
 The factory automation is built into the same physical hardware as the PLC and
-other hardware.
+other supporting systems and hardware.
 
 This is very very WIP, expect it to change often.
 
