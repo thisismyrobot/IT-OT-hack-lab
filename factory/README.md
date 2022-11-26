@@ -30,3 +30,7 @@ if you have access to all the code and information about the system.
 ## Animation of a semi-current version of the design
 
 ![](model_factory.gif)
+
+## The two plates making up the fundamental structure
+
+![](plates.png)
