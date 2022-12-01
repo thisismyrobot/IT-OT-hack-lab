@@ -1,0 +1,33 @@
+                    		MOXA LICENSE
+                       Version 1, 29 November 2007
+
+ Copyright (c) MOXA Inc.  All rights reserved.
+
+The SOFTWARE is copyrighted and is protected by all applicable national 
+laws. Any duplication of the SOFTWARE other than for archival purposes 
+is a violation of law, i.e., redistribution of this SOFTWARE in source  
+and binary form are prohibited. You agree to prevent any unauthorized 
+copying of the SOFTWARE.
+ 
+
+LIMITED WARRANTY: MOXA Inc. or its distributors, depending on which 
+party sold the SOFTWARE, warrants that the media on which the SOFTWARE 
+is installed will be free from defects in materials under normal use. 
+MOXA or its distributor warrants, for your benefit alone, that during 
+the Warranty Period the SOFTWARE, shall operate substantially in 
+accordance with the functional specifications in the User's Manual. If, 
+during the Warranty Period, a defect in the SOFTWARE, appears, you may 
+obtain a replacement of the SOFTWARE. Any replacement SOFTWARE will be 
+warranted for the reminder of the Warranty Period.
+
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED 
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  
+IN NO EVENT SHALL MOXA OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
