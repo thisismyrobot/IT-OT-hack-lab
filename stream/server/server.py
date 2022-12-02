@@ -1,12 +1,13 @@
-import asyncio
-import websockets
+from flask import Flask, render_template
+from flask_sock import Sock
 
-async def echo(websocket):
-    async for message in websocket:
-        print(message)
 
-async def main():
-    async with websockets.serve(echo, "localhost", 8765):
-        await asyncio.Future()  # run forever
+app = Flask(__name__)
+sock = Sock(app)
 
-asyncio.run(main())
+
+@sock.route('/monitor')
+def echo(ws):
+    while True:
+        data = ws.receive()
+        print(data)

@@ -6,9 +6,8 @@ import pyshark.tshark.tshark
 import websockets
 
 
-
-async def pcap_client(interface, server, port=8765):
-    async with websockets.connect(f'ws://{server}:8765') as websocket:
+async def pcap_client(interface, server, port=5000):
+    async with websockets.connect(f'ws://{server}:{port}/monitor') as websocket:
         cmd = [
             pyshark.tshark.tshark.get_process_path(),
             '-i', interface,
