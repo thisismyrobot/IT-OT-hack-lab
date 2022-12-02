@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A server</title>
+</head>
+<body>
 A server
+<pre id="packets"></pre>
+<script>
+    var socket = new WebSocket("ws://localhost:5000/packets/consume")
+    var buffer = ''
+    var maxlen = 5000
+    var display = document.getElementById('packets')
+    socket.onmessage = function(event) {
+        buffer = buffer + event.data
+        if (buffer.length > maxlen) {
+            buffer = buffer.substring(buffer.length - maxlen)
+        }
+        display.innerText = buffer
+    };
+</script>
+</body>
+</html>

@@ -7,7 +7,7 @@ import websockets
 
 
 async def pcap_client(interface, server, port=5000):
-    async with websockets.connect(f'ws://{server}:{port}/monitor') as websocket:
+    async with websockets.connect(f'ws://{server}:{port}/packets/feed') as websocket:
         cmd = [
             pyshark.tshark.tshark.get_process_path(),
             '-i', interface,
@@ -22,7 +22,7 @@ async def pcap_client(interface, server, port=5000):
 
         while True:
             line = await proc.stdout.readline()
-            await websocket.send(line)
+            await websocket.send(line.decode())
 
 
 def main(interface, server):
