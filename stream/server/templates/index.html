@@ -1,24 +1,125 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
     <title>A server</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #packets {
+            background-color: black;
+            color:#00ff00;
+            overflow-y: scroll;
+        }
+        .summary {
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        .raw {
+            font-family: monospace;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+        .rawhide {
+            display: none;
+        }
+        .drill {
+            margin-left: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .drill:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-A server
-<pre id="packets"></pre>
+    <div style="max-height: 100vh">
+    <h1>A server</h1>
+    <div style="display: flex; align-items: stretch; position: relative;">
+        <div id="video" style="width: 50%; position: absolute; height: 100%"></div>
+        <div id="packets" style="width: 50%; position: absolute; height: 100%"></div>
+    </div>
+</div>
 <script>
     var socket = new WebSocket("ws://localhost:5000/packets/consume")
     var maxRows = 1024
     var rows = []
-    var display = document.getElementById('packets')
-    socket.onmessage = function(event) {
-        var packet = JSON.parse(event.data)
-        if (rows.length > maxRows) {
-            rows.shift()
+    var packetsElem = document.getElementById('packets')
+
+    var renderPacket = function(packet) {
+        var wrapper = document.createElement('div')
+        wrapper.classList.add('packet')
+
+        var summaryElem = document.createElement('span')
+        summaryElem.classList.add('summary')
+        var summary = packet.frame['frame.protocols']
+
+        if (packet.ip) {
+            summary += ': ' + packet.ip['ip.src']
+            if (packet.tcp) {
+                summary += ':' + packet.tcp['tcp.srcport']
+            }
+            if (packet.udp) {
+                summary += ':' + packet.udp['udp.srcport']
+            }
+
+            summary += ' &rarr; '
+
+            summary += packet.ip['ip.dst']
+            if (packet.tcp) {
+                summary += ':' + packet.tcp['tcp.dstport']
+            }
+            if (packet.udp) {
+                summary += ':' + packet.udp['udp.dstport']
+            }
         }
-        rows.push(JSON.stringify(packet))
-        display.innerText = rows.join('\n')
+
+        summaryElem.innerHTML = summary
+        wrapper.appendChild(summaryElem)
+
+        var drillElem = document.createElement('span')
+        drillElem.innerText = '+'
+        drillElem.classList.add('drill')
+        drillElem.addEventListener('click', function (event) {
+            event.target.parentNode.getElementsByClassName('raw')[0].classList.toggle('rawhide')
+            if (event.target.innerHTML === '+') {
+                event.target.innerText = '-'
+            }
+            else {
+                event.target.innerText = '+'
+            }
+        })
+        wrapper.appendChild(drillElem)
+
+        var rawElem = document.createElement('div')
+        rawElem.classList.add('raw')
+        rawElem.classList.add('rawhide')
+
+        var raw = ''
+        Object.keys(packet).forEach(function(key) {
+            raw += key + ': ' + JSON.stringify(packet[key]) + '<br />'
+        })
+        rawElem.innerHTML = raw
+        wrapper.appendChild(rawElem)
+
+        return wrapper
+    }
+
+    socket.onmessage = function(event) {
+        var existingRows = packetsElem.getElementsByClassName('packet')
+
+        if (existingRows.length > maxRows) {
+            packetsElem.removeChild(existingRows[0])
+        }
+
+        var packet = JSON.parse(event.data)
+        var packetElem = renderPacket(packet)
+
+        packetsElem.appendChild(packetElem)
+        packetsElem.scrollTop = packetsElem.scrollHeight;
     };
 </script>
 </body>
