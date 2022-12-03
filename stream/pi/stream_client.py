@@ -83,8 +83,8 @@ def downsize(packet):
     return packet['_source']['layers']
 
 
-async def pcap_client(interface, server, port=5000):
-    async with websockets.connect(f'ws://{server}:{port}/packets/feed') as websocket:
+async def pcap_client(interface, server_and_port):
+    async with websockets.connect(f'ws://{server_and_port}/packets/feed') as websocket:
         cmd = [
             pyshark.tshark.tshark.get_process_path(),
             '-i', interface,
@@ -115,8 +115,8 @@ async def pcap_client(interface, server, port=5000):
                 packet += line
 
 
-def main(interface, server):
-    asyncio.run(pcap_client(interface, server))
+def main(interface, server_and_port):
+    asyncio.run(pcap_client(interface, server_and_port))
 
 
 if __name__ == '__main__':

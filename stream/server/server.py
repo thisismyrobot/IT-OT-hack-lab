@@ -20,7 +20,7 @@ def feed(ws):
         data = ws.receive()
 
         # Prevent blowing up the queue if the consumer stops.
-        if monitor_queue.qsize() < 10:
+        if monitor_queue.qsize() < 100:
             monitor_queue.put(data)
 
 
