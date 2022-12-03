@@ -14,7 +14,8 @@ sock = Sock(app)
 def feed(ws):
     while True:
         data = ws.receive()
-        monitor_queue.put(data)
+        if monitor_queue.qsize() < 10:
+            monitor_queue.put(data)
 
 
 @sock.route('/packets/consume')
