@@ -9,15 +9,16 @@ A server
 <pre id="packets"></pre>
 <script>
     var socket = new WebSocket("ws://localhost:5000/packets/consume")
-    var buffer = ''
-    var maxlen = 5000
+    var maxRows = 1024
+    var rows = []
     var display = document.getElementById('packets')
     socket.onmessage = function(event) {
-        buffer = buffer + event.data
-        if (buffer.length > maxlen) {
-            buffer = buffer.substring(buffer.length - maxlen)
+        var packet = JSON.parse(event.data)
+        if (rows.length > maxRows) {
+            rows.shift()
         }
-        display.innerText = buffer
+        rows.push(JSON.stringify(packet))
+        display.innerText = rows.join('\n')
     };
 </script>
 </body>
