@@ -3,8 +3,10 @@ import queue
 from flask import Flask, render_template
 from flask_sock import Sock
 
+import simple_websocket.ws
 
-monitor_queue = queue.Queue()
+
+monitor_queues = {}
 
 app = Flask(__name__)
 sock = Sock(app)
@@ -19,17 +21,27 @@ def feed(ws):
     while True:
         data = ws.receive()
 
-        # Prevent blowing up the queue if the consumer stops.
-        if monitor_queue.qsize() < 100:
-            monitor_queue.put(data)
+        for monitor_queue in monitor_queues.values():
+            # Prevent blowing up the queue if the consumer stops.
+            if monitor_queue.qsize() < 100:
+                monitor_queue.put(data)
 
 
 @sock.route('/packets/consume')
 def consume(ws):
     """Provides queued pcap data to a web browser client."""
+    fileno = ws.sock.fileno()
+    try:
+        ws_queue = monitor_queues[fileno]
+    except KeyError:
+        ws_queue = monitor_queues[fileno] = queue.Queue()
     while True:
-        line = monitor_queue.get()
-        ws.send(line)
+        line = ws_queue.get()
+
+        try:
+            ws.send(line)
+        except simple_websocket.ws.ConnectionClosed:
+            del monitor_queues[fileno]
 
 
 @app.route('/')
