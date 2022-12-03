@@ -90,7 +90,7 @@
     </div>
 <script>
     var paused = false
-    var socket = new WebSocket("ws://localhost:5000/packets/consume")
+    var socket = new WebSocket("ws://" + location.host + "/packets/consume")
     var maxRows = 1024
     var rows = []
     var packetsElem = document.getElementById('packets')

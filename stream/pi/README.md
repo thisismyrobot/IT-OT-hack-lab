@@ -1,6 +1,7 @@
 # Streamer Pi client
 
-Pushes video and pcap up to the web server via websockets
+Pushes video and pcap up to the web server via websockets, from a Raspberry
+Pi.
 
 ## Install
 

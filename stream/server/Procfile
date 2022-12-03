@@ -1,0 +1,1 @@
+web: pipenv run gunicorn -b :8000 --workers 4 --threads 100 server:app
