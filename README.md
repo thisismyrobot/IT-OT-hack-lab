@@ -42,3 +42,11 @@ to 'root'.
 
 Run the `chaos_craig.sh` script to set up the random elements and start the
 factory.
+
+## Thank you
+
+This project wouldn't have been possible without the following people's
+advice, patience, laser cutting and spare parts:
+
+ - [Simon Riley](https://www.linkedin.com/in/simon-riley-a3679b84)
+ - [Michael Cullen](https://www.linkedin.com/in/michael-cullen-45155b66)
